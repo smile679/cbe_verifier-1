@@ -213,7 +213,7 @@ export default function App() {
             <span>Created By Axon Tech.</span>
           </p>
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2 md:gap-3">
           {teams.map((team) => (
             <div
               key={team.name}
