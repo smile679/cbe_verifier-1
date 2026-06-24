@@ -9,6 +9,10 @@ Click **Verify receipt** — it builds the URL and opens it in a new tab:
 
 Live - [https://cbe-verifier-1.vercel.app/]
 
+## Preview
+
+![Home](https://res.cloudinary.com/dineyc77u/image/upload/v1782337296/cbe_verifier_irsc9i.png)
+
 ## Tech stack
 
 - React 18
