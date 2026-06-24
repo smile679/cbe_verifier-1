@@ -1,46 +1,24 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import {
   CheckIcon,
   CopyIcon,
   ExternalLinkIcon,
   ReceiptIcon,
 } from "./icons/Icons";
-import { ChevronDown } from "lucide-react";
 
- const teams = [
-   {
-     name: "Nuovas Team",
-     accNum: [
-       { name: "Natnael Haile Gebreslasie", acc: "76345507" },
-       { name: "Fillimon Teklay", acc: "11733177" },
-       { name: "Samson Gidey Beyene", acc: "01366152" },
-       { name: "Mr Biniyam Surafel Gerensea", acc: "60052357" },
-     ],
-   },
-   {
-     name: "Coffee Team",
-     accNum: [
-       { name: "Ermias Gebreslase", acc: "85334628" },
-       { name: "BIRUKTAREKE GEBREMICHAEL", acc: "11497889" },
-       { name: "Mussie Gebremicheal Bahta", acc: "18462905" },
-       { name: "Hanibal teklay brhane", acc: "96534431" },
-     ],
-   },
- ];
 
 export default function App() {
   const [ft, setFt] = useState("");
-  const [selectedAcc, setSelectedAcc] = useState("");
+  // const [selectedAcc, setSelectedAcc] = useState("");
   const [acc, setAcc] = useState("");
   const [copied, setCopied] = useState(false);
   const [lastUrl, setLastUrl] = useState("");
   const [verified, setVerified] = useState(false);
-  const [openTeam, setOpenTeam] = useState("Nuovas Team");
   const accRef = useRef(null);
 
   const cleanFt = ft.trim().replace(/\s+/g, "").toUpperCase();
-  const cleanAcc = selectedAcc !== "" ? selectedAcc : acc.trim().replace(/\D/g, "");
-  const isValid = cleanFt.length === 12 && (cleanAcc.length === 8 || selectedAcc);
+  const cleanAcc = acc.trim().replace(/\D/g, "");
+  const isValid = cleanFt.length === 12 && (cleanAcc.length === 8);
   const builtUrl = isValid
     ? `https://apps.cbe.com.et:100/?id=${cleanFt}${cleanAcc}`
     : "";
@@ -67,10 +45,6 @@ export default function App() {
     if (e.key === "Enter" && isValid) handleVerify();
   }
   
-  useEffect(()=>(
-    console.log(openTeam)
-    
-  ),[openTeam])
 
   return (
     <section className="w-full min-h-screen bg-[#f0f7f4] flex flex-col">
@@ -86,7 +60,7 @@ export default function App() {
           <p className="text-sm text-cbe-600">Commercial Bank of Ethiopia</p>
         </div>
       </div>
-      <div className=" flex max-sm:flex-col-reverse items-center justify-center gap-5 p-4 mb-20">
+      <div className="flex max-sm:flex-col-reverse items-center justify-center gap-5 p-4 mb-20">
         <div className="w-full max-w-md">
           <h1 className="p-3 text-lg font-bold text-green-700">
             Verify Your Receipt Here.
@@ -134,11 +108,11 @@ export default function App() {
                 <input
                   ref={accRef}
                   type="text"
-                  value={selectedAcc !== "" ? selectedAcc : acc}
+                  value= {acc}
                   onChange={(e) => {
                     setAcc(e.target.value);
                     setVerified(false);
-                    setSelectedAcc("");
+                    // setSelectedAcc("");
                   }}
                   onKeyDown={handleAccKeyDown}
                   placeholder="e.g. 76345507"
@@ -213,7 +187,7 @@ export default function App() {
             <span>Created By Axon Tech.</span>
           </p>
         </div>
-        <div className="flex flex-col gap-2 md:gap-3">
+        {/* <div className="flex flex-col gap-2 md:gap-3">
           {teams.map((team) => (
             <div
               key={team.name}
@@ -258,7 +232,7 @@ export default function App() {
               
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );
